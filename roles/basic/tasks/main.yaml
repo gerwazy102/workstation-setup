@@ -1,0 +1,10 @@
+---
+
+- name: include desktop install
+  include_tasks: "desktop.yaml"
+
+- name: include development tools
+  include_tasks: "tools.yaml"
+
+- name: include text editors
+  include_tasks: "text_editors.yaml"

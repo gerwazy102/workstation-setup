@@ -1,0 +1,15 @@
+---
+- name: setup workstation ansible playbook
+  hosts: localhost
+  remote_user: root
+
+  vars:
+    user_to_config: "gerwazy"
+
+  roles:
+    - basic
+    
+
+    
+
+      

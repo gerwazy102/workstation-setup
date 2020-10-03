@@ -1,0 +1,39 @@
+---
+- name: install text editors
+  pacman:
+    name: ["neovim", "vscode"]
+    state: present
+
+- name: configure vscode extensions
+  shell: "code --install-extension {{item}}"
+  with_items:
+    - eamodio.gitlens
+    - golang.go
+    - redhat.vscode-yaml
+    - rust-lang.rust
+  become_user: "{{user_to_config}}"
+
+- name: create vscode directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - "/home/{{user_to_config}}/.config/Code - OSS/User/"
+    - "/home/{{user_to_config}}/.config/Code/User/"
+
+- name: template vscode configuration
+  template:
+    src: vscode_settings.json.j2
+    dest: "/home/{{user_to_config}}/.config/Code - OSS/User/settings.json"
+    owner: "{{user_to_config}}"
+    group: "{{user_to_config}}"
+    mode: "0644"
+
+- name: template vscode configuration
+  template:
+    src: vscode_settings.json.j2
+    dest: "/home/{{user_to_config}}/.config/Code/User/settings.json"
+    owner: "{{user_to_config}}"
+    group: "{{user_to_config}}"
+    mode: "0644"

@@ -1,0 +1,25 @@
+---
+- name: install DE
+  pacman:
+    name: ["gnome", "gnome-extra"]
+    state: present
+    extra_args: "--noconfirm"
+
+- name: install web tools
+  pacman:
+    name: ["firefox"]
+    state: present
+
+- name: install remote desktop tools
+  pacman:
+    name: ["freerdp", "libvncserver", "remmina"]
+    state: present
+
+- name: Enable gdm
+  systemd:
+    name: "{{item}}"
+    enabled: yes
+    state: started
+  with_items:
+    - gdm
+    - NetworkManager

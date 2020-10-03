@@ -1,0 +1,13 @@
+---
+- name: install extra development tools
+  pacman:
+    name: ["git", "docker", "virtualbox", "minikube", "go"]
+    state: present
+
+- name: enable docker
+  systemd:
+    name: "{{item}}"
+    enabled: yes
+    state: started
+  with_items:
+    - docker
