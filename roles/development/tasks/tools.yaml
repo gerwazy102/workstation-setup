@@ -1,7 +1,7 @@
 ---
 - name: install extra development tools
   pacman:
-    name: ["git", "docker", "virtualbox", "minikube", "go"]
+    name: ["git", "docker", "virtualbox", "minikube", "go", "kubectl"]
     state: present
 
 - name: enable docker
