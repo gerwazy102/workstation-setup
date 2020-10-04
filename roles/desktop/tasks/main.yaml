@@ -1,0 +1,4 @@
+---
+
+- name: include desktop install
+  include_tasks: "desktop.yaml"

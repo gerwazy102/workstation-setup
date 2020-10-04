@@ -1,0 +1,18 @@
+---
+
+- name: install tilix and fish
+  pacman:
+    name: ["fish", "tilix"]
+    state: present
+
+- name: change user shell to "fish"
+  user:
+    name: "{{user_to_config}}"
+    shell: /bin/fish
+
+- name: download and install oh-my-fish
+  shell: "{{item}}"
+  become_user: "{{user_to_config}}"
+  with_items:
+    - "curl -L https://get.oh-my.fish > /tmp/install"
+    - "yes n | fish /tmp/install --path=/home/{{user_to_config}}/.local/share/omf --config=/home/{{user_to_config}}/.config/omf"

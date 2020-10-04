@@ -1,7 +1,7 @@
 ---
 
-- name: include desktop install
-  include_tasks: "desktop.yaml"
+- name: terminal configuration
+  include_tasks: "terminal.yaml"
 
 - name: include development tools
   include_tasks: "tools.yaml"
